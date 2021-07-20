@@ -1,5 +1,5 @@
 import React from "react";
-import Com_item from "./com_item";
+import Comment_item from "./com_item";
 
 class Comment extends React.Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class Comment extends React.Component {
       let map = new Map();
       req.forEach(element => {
           console.log('json',element);
-          map.set(<Com_item data={element}/>)
+          map.set(<Comment_item data={element} id={x.props.id}/>)
       });
       x.setState({Comments:map})
     });

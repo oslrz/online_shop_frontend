@@ -10,7 +10,6 @@ class Story extends React.Component {
   constructor(props) {
     super(props);
     this.state = { news: null };
-    this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
     console.log("this.props.newsid", this.props.newsid);
@@ -29,23 +28,12 @@ class Story extends React.Component {
     });
     request.send(data);
   }
-  handleClick() {
-    cookies.remove("news");
-    window.location.reload();
-  }
   render() {
     if (this.state.news === null) {
       return <p>no data = {this.state.news}</p>;
     } else {
       return (
         <div style={{height:'max-content',width:'90rem',float:'left'}}>
-          <button
-            type="button"
-            class="btn btn-primary"
-            onClick={this.handleClick}
-          >
-            Back
-          </button>
           <Story_page data={this.state.news} />
           <Comments id={this.props.newsid}/>
         </div>

@@ -8,10 +8,10 @@ const cookies = new Cookies();
 class Make_Coment extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { state: false,data:""};
+    this.state = { state: false,data:"",nickname:cookies.get('nickname'),id:this.props.id};
     this.handleChange = this.handleChange.bind(this);
     this.changeHeight = this.changeHeight.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+
     this.makeCom = this.makeCom.bind(this);
   }
   makeCom() {
@@ -35,23 +35,7 @@ class Make_Coment extends React.Component {
   handleChange(event) {
     this.setState({ data: event.target.value });
   }
-  handleClick() {
-    let x = this.props;
-    let data = JSON.stringify({
-        id:this.props.id,
-        text:this.state.data,
-        author:cookies.get('nickname')
-    });
-    let request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:9000/comments/make_comment", true);
-    request.setRequestHeader("Content-Type", "application/json");
-    request.addEventListener("load", function () {
-        if(request.response !== 'good'){
-            alert(request.response)
-        }
-    });
-    request.send(data);
-  }
+
 
   render() {
     let text;
@@ -62,26 +46,29 @@ class Make_Coment extends React.Component {
     }
     return (
       <div>
-        <button type="button" class="btn btn-primary" onClick={this.makeCom}>
+        <button type="button" class="btn btn-primary" onClick={this.makeCom} style={{marginTop:'1rem'}}>
           {text}
         </button>
-        <div id="make_com_div" style={{ display: "none" }}>
+        <form action="http://localhost:9000/comments/make_comment" method="POST" encType="multipart/form-data" id="make_com_div" style={{ display: "none" }}>
           <textarea
             id="textarea"
             onInput={this.changeHeight}
             onChange={this.handleChange}
           ></textarea>
+          <input type="text" value={this.state.data} name='text' style={{display:'none'}}/>
+          <input type="text" value={this.state.id} name='id' style={{display:'none'}}/>
+          <input type="text" value={this.state.nickname} name='author' style={{display:'none'}}/>
+          <input type="file" name='photo' multiple/>
           <button
             style={{ display: "none" }}
             id="bttn_hidn"
-            type="button"
+            type="submit"
             className="btn btn-success"
             style={{ float: "inline-end" }}
-            onClick={this.handleClick}
           >
             Send
           </button>
-        </div>
+        </form>
       </div>
     );
   }

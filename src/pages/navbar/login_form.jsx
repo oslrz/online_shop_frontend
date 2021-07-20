@@ -5,7 +5,7 @@ const cookies = new Cookies();
 class Login_form extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { login: "", password: "", nickname: null,register:false};
+    this.state = { login: "", password: "", nickname: null,register:false,profile_pick:""};
     this.handleLogin = this.handleLogin.bind(this)
     this.handlePass = this.handlePass.bind(this)
     this.handleLog = this.handleLog.bind(this)
@@ -30,12 +30,19 @@ class Login_form extends React.Component {
     request.addEventListener("load", function () {
       
       let data = request.response;
+
       if(data === "none"){
         alert('Введіть правильні данні')
       }else{
         data = JSON.parse(data);
         cookies.set('nickname',data.nickname)
         cookies.set('password',data.password)
+        if(data.photos !== null){
+          cookies.set('profile_pick',data.photos)
+          let path = 'http://localhost:9000/'+cookies.get('profile_pick');
+          x.setState({profile_pick: "<img style={{width:'88px'}} src="+path+" id='profile_pick'/>"})
+        }
+        
         x.setState({nickname:data.nickname})
         window.location.reload();
       }
@@ -52,9 +59,11 @@ class Login_form extends React.Component {
   handleOut(){
     cookies.remove('nickname');
     cookies.remove('password');
+    cookies.remove('profile_pick');
+    cookies.remove('news')
     this.setState({nickname:null});
     this.setState({login:""});
-    this.setState({password:""})
+    this.setState({password:""});
     window.location.reload();
   }
   closeReg = () =>{
@@ -106,12 +115,22 @@ class Login_form extends React.Component {
           </div>
         );
       }else{
-        return(
-          <div style={{color:"white"}}>
-            {this.state.nickname}
-            <button type="button" className="btn btn-info" onClick={this.handleOut}>Exit</button>
-          </div>
-        )
+        if(cookies.get('profile_pick')){
+          return(
+            <div style={{color:"white"}}>
+              <img style={{width:'88px'}} src={"http://localhost:9000/"+cookies.get('profile_pick')} id='profile_pick'/>
+              {this.state.nickname}
+              <button type="button" style={{marginLeft:'1rem'}} className="btn btn-info" onClick={this.handleOut}>Exit</button>
+            </div>
+          )
+        }else{
+          return(
+            <div style={{color:"white"}}>
+              {this.state.nickname}
+              <button type="button" style={{marginLeft:'1rem'}} className="btn btn-info" onClick={this.handleOut}>Exit</button>
+            </div>
+          )
+        }
       }
     }
     

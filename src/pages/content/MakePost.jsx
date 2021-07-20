@@ -13,7 +13,7 @@ class MakePost extends React.Component{
             data = 'make post'
         }
         return(
-            <button className="btn btn-primary" onClick={this.props.ClickHandl} style={{float:"left"}}>
+            <button className="btn btn-primary" onClick={this.props.ClickHandl} style={{float:"left",margin: '2px',marginBottom:'2rem'}}>
                 {data}
             </button>
         )

@@ -14,37 +14,35 @@ code {
 
 #content {
   width: 70%;
-  border: 1px solid;
-  float: inline-start;
-  margin-top: 2rem;
-  margin-left: 2rem;
-}
-#story{
-  
-}
-#story_page{
-  width: 100%;
-  border: 1px solid;
   float: inline-start;
   margin-top: 2rem;
   margin-left: 2rem;
 }
 
+#story_page {
+  width: 100%;
+  float: inline-start;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
 .posts {
-  margin-top: 3rem;
-  /* border: 1px solid; */
-  /* border-radius: 20px; */
+  margin-top: 1rem;
   width: 95%;
   left: 2.5%;
   position: relative;
   background-color: aliceblue;
-  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  min-height: 13rem;
+  max-height: 12rem;
+  overflow: hidden;
 }
 
 #panel {
-  border: 1px solid;
   width: 20%;
-  height: 200px;
   float: inline-end;
   margin-right: 2rem;
   margin-top: 2rem;
@@ -55,9 +53,82 @@ code {
   overflow: hidden;
 }
 
-.comments{
-  border: 1px solid;
-  margin-left: 1rem;
+.comments {
+  margin-left: 2rem;
   margin-top: 4px;
-  
+  min-height: 9rem;
+  max-height: max-content;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.photocard {
+  align-content: center;
+  display: flex;
+}
+
+.photo {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 21rem;
+}
+
+.story_page_photo {
+  max-width: 35rem;
+  /* width: 35rem; */
+  margin: 1rem;
+}
+
+.favourite_item {
+  float: left;
+  width: 100%;
+  margin: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.favourite_image {
+  height: 85px;
+}
+
+#hidden_div {
+  background-color: aquamarine;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  z-index: 10;
+}
+
+.post_photo {
+  width: 132px;
+  min-height: 13rem;
+  position: absolute;
+  border-right-color: rgb(183, 235, 235);
+  border-right-style: solid;
+  border-right-width: 7px;
+}
+
+#header_post {
+  border-bottom-color: rgb(143, 224, 224);
+  border-bottom-style: solid;
+  border-bottom-width: 7px;
+}
+.textblock {
+  position: relative;
+  width: 87%;
+  margin-left: 10rem;
+  height: 7rem;
+  overflow: hidden;
+}
+
+.makecomdiv {
+  position: relative;
+  min-height: 9rem;
+  max-height: max-content;
+  width: 75rem;
+  left: 11rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
 }
