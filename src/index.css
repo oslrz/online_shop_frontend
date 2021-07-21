@@ -29,6 +29,7 @@ code {
 }
 
 .posts {
+  cursor: pointer;
   margin-top: 1rem;
   width: 95%;
   left: 2.5%;
@@ -81,6 +82,7 @@ code {
 }
 
 .favourite_item {
+  cursor: pointer;
   float: left;
   width: 100%;
   margin: 5px;

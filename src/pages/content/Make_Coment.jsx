@@ -11,7 +11,7 @@ class Make_Coment extends React.Component {
     this.state = { state: false,data:"",nickname:cookies.get('nickname'),id:this.props.id};
     this.handleChange = this.handleChange.bind(this);
     this.changeHeight = this.changeHeight.bind(this);
-
+    this.onsubmit = this.onsubmit.bind(this)
     this.makeCom = this.makeCom.bind(this);
   }
   makeCom() {
@@ -27,7 +27,22 @@ class Make_Coment extends React.Component {
       doc.style.display = "none";
     }
   }
-
+  onsubmit(event){
+    var url = "http://localhost:9000/comments/make_comment";
+    var request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.onload = function() { 
+      console.log(request.responseText);
+      window.location.reload();
+    };
+  
+    request.onerror = function() {
+      // request failed
+    };
+  
+    request.send(new FormData(event.target)); // create FormData from form that triggered event
+    event.preventDefault();
+  }
   changeHeight() {
     let txt = document.getElementById("textarea");
     txt.style.height = txt.scrollHeight + "px";
@@ -46,10 +61,10 @@ class Make_Coment extends React.Component {
     }
     return (
       <div>
-        <button type="button" class="btn btn-primary" onClick={this.makeCom} style={{marginTop:'1rem'}}>
+        <button type="button" class="btn btn-primary" onClick={this.makeCom} style={{marginTop:'1rem',marginLeft:"2rem"}}>
           {text}
         </button>
-        <form action="http://localhost:9000/comments/make_comment" method="POST" encType="multipart/form-data" id="make_com_div" style={{ display: "none" }}>
+        <form onSubmit={this.onsubmit} action="http://localhost:9000/comments/make_comment" method="POST" encType="multipart/form-data" id="make_com_div" style={{ display: "none",marginLeft: "2rem"}}>
           <textarea
             id="textarea"
             onInput={this.changeHeight}

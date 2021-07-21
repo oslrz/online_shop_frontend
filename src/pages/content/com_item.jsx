@@ -136,10 +136,15 @@ class Comment_item extends React.Component {
         </div>
       );
     }
+    let replie = null;
+    if (this.props.replies) {
+      replie = <p>replied:{this.props.replies}</p>;
+    }
     if (this.state.img === undefined) {
       return (
         <div>
           <div className="comments" id={this.props.data.id}>
+            {replie}
             <button
               style={{ position: "absolute", left: "86rem" }}
               type="button"
@@ -168,13 +173,18 @@ class Comment_item extends React.Component {
               </div>
             </div>
           </div>
-          <Response vision={this.state.vision} code={this.props.data.id} id={this.props.id}/>
+          <Response
+            vision={this.state.vision}
+            code={this.props.data.id}
+            id={this.props.id}
+          />
         </div>
       );
     } else {
       return (
         <div>
           <div className="comments" id={this.props.data.id}>
+            {replie}
             <button
               type="button"
               style={{ position: "absolute", left: "86rem" }}
@@ -203,7 +213,11 @@ class Comment_item extends React.Component {
               </div>
             </div>
           </div>
-          <Response vision={this.state.vision} code={this.props.data.id} id={this.props.id}/>
+          <Response
+            vision={this.state.vision}
+            code={this.props.data.id}
+            id={this.props.id}
+          />
         </div>
       );
     }

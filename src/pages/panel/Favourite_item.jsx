@@ -43,8 +43,7 @@ class Favourite_item extends React.Component {
     });
   }
   handleClick() {
-    const link = window.location.href + this.props.id;
-    window.location.href = link;
+    window.location.href ="/"+this.props.id;
   }
   render() {
     if (this.state.vision) {
