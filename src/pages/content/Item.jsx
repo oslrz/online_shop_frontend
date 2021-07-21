@@ -87,7 +87,8 @@ class Item extends React.Component {
     window.location.href = link;
   }
 
-  handleLike() {
+  handleLike(e) {
+    e.stopPropagation();
     let lik = this.state.likes;
     lik++;
     this.setState({ likes: lik });
@@ -101,7 +102,8 @@ class Item extends React.Component {
     request.send(data);
   }
 
-  handleDis() {
+  handleDis(e) {
+    e.stopPropagation();
     let dis = this.state.dislikes;
     dis++;
     this.setState({ dislikes: dis });
@@ -143,7 +145,7 @@ class Item extends React.Component {
               className="btn btn-info"
               style={{ position: "absolute", left: "96%" }}
               onClick={(e) => {
-                e.stopPropagation(0);
+                e.stopPropagation();
                 value.remove(this.props.id);
                 this.removeFromFavourite();
               }}

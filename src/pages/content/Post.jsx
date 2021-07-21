@@ -27,6 +27,7 @@ class Post extends React.Component {
     request.setRequestHeader("Content-Type", "application/json");
     request.addEventListener("load", function () {
       let obj = JSON.parse(request.response);
+      console.log(obj)
       let map = new Map();
       for (let i = obj.length - 1; i >= 0; i--) {
         if (obj[i].photos === null) {
