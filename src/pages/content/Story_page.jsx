@@ -8,7 +8,7 @@ class Story_page extends React.Component {
   componentDidMount() {
     let data = JSON.parse(this.props.data);
     let map = new Map();
-    if (data[0].photo === null) {
+    if (data[0].photos !== null) {
       let photo = data[0].photos;
       photo = photo.split(",");
       console.log("photo", photo);
@@ -16,7 +16,6 @@ class Story_page extends React.Component {
       let i = 0;
 
       photo.forEach((element) => {
-        console.log("elements", element);
         if (i === 0) {
           map.set(
             <img

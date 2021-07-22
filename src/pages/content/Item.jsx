@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Cookies from "universal-cookie";
 import { ContextElemConsumer } from "../Context_element";
-import { Route, BrowserRouter} from "react-router-dom"
+import { Route, BrowserRouter } from "react-router-dom";
 
 const cookies = new Cookies();
 class Item extends React.Component {
@@ -11,33 +11,54 @@ class Item extends React.Component {
       likes: 0,
       dislikes: 0,
       favorite: this.props.favorite,
+      vision: true,
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.handleDis = this.handleDis.bind(this);
     this.addToFavourive = this.addToFavourive.bind(this);
     this.removeFromFavourite = this.removeFromFavourite.bind(this);
+    this.makeArchive = this.makeArchive.bind(this);
+  }
+
+  makeArchive() {
+    console.log('make archive')
+    let x = this;
+    let data = JSON.stringify({
+      code: this.props.id,
+    });
+    let request = new XMLHttpRequest();
+    request.open("POST", "http://localhost:9000/posts/archived", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.addEventListener("load", function () {
+      if (request.response === "ok") {
+        x.setState({vision:false})
+      }else{
+        console.error(request.response);
+      }
+    });
+    request.send(data);
   }
 
   removeFromFavourite() {
-      let x = this;
-      let data = JSON.stringify({
-        nickname: cookies.get("nickname"),
-        code: this.props.id,
+    let x = this;
+    let data = JSON.stringify({
+      nickname: cookies.get("nickname"),
+      code: this.props.id,
+    });
+    let request = new XMLHttpRequest();
+    request.open(
+      "POST",
+      "http://localhost:9000/posts/remove_from_favourite",
+      true
+    );
+    request.setRequestHeader("Content-Type", "application/json");
+    request.addEventListener("load", function () {
+      x.setState({
+        favorite: false,
       });
-      let request = new XMLHttpRequest();
-      request.open(
-        "POST",
-        "http://localhost:9000/posts/remove_from_favourite",
-        true
-      );
-      request.setRequestHeader("Content-Type", "application/json");
-      request.addEventListener("load", function () {
-        x.setState({
-          favorite: false,
-        });
-      });
-      request.send(data);
+    });
+    request.send(data);
   }
 
   addToFavourive(event) {
@@ -58,7 +79,7 @@ class Item extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({_isMounted:true})
+    this.setState({ _isMounted: true });
     let x = this;
     let data = JSON.stringify({
       id: this.props.id,
@@ -83,7 +104,7 @@ class Item extends React.Component {
   }
 
   handleClick() {
-    const link = window.location.href+this.props.id
+    const link = window.location.href + this.props.id;
     window.location.href = link;
   }
 
@@ -125,7 +146,7 @@ class Item extends React.Component {
           {(value) => (
             <button
               className="btn btn-info"
-              style={{ position: "absolute", left: "96%" }}
+              style={{ position: "absolute", left: "95.7%" }}
               onClick={(e) => {
                 e.stopPropagation();
                 value.add(this.props.id);
@@ -143,7 +164,7 @@ class Item extends React.Component {
           {(value) => (
             <button
               className="btn btn-info"
-              style={{ position: "absolute", left: "96%" }}
+              style={{ position: "absolute", left: "95.7%" }}
               onClick={(e) => {
                 e.stopPropagation();
                 value.remove(this.props.id);
@@ -156,71 +177,98 @@ class Item extends React.Component {
         </ContextElemConsumer>
       );
     }
-    
-    if (this.props.img === undefined) {
-      return (
-        <div className="posts" onClick={this.handleClick.bind(this)}>
-          <div className="post_photo">
-            <img
-              src={"http://localhost:9000/photo/default.jpg"}
-              alt=""
-              style={{ height: "95px", float: "left", width: "125px" }}
-            />
-          </div>
-          {bttn}
-          <h1 style={{ marginLeft: "10rem" }}>{this.props.topic}</h1>
-          <p className="textblock">{this.props.data}</p>
-          <div
-            style={{ float: "inline-end", position: "relative", bottom: "8px" }}
-          >
-            <div onClick={this.handleLike} style={{ float: "left" }}>
-              &#9757;
-            </div>
-            <div style={{ float: "left", color: "green" }}>
-              {this.state.likes}
-            </div>
-            <div style={{ float: "left" }} onClick={this.handleDis}>
-              &#9759;
-            </div>
-            <div style={{ float: "left", color: "red" }}>
-              {this.state.dislikes}
-            </div>
-          </div>
-          
-        </div>
+    let close_bttn = null;
+    if (this.props.changing) {
+      close_bttn = (
+        <button
+          className="btn btn-info"
+          type="button"
+          style={{ float: "inline-end", position: "absolute", right: "3.4rem" }}
+          onClick={(event)=>{
+            event.stopPropagation();
+            this.makeArchive();
+          }}
+        >
+          archived
+        </button>
       );
+    }
+    if (this.state.vision) {
+      if (this.props.img === undefined) {
+        return (
+          <div className="posts" onClick={this.handleClick.bind(this)}>
+            <div className="post_photo">
+              <img
+                src={"http://localhost:9000/photo/default.jpg"}
+                alt=""
+                style={{ height: "95px", float: "left", width: "125px" }}
+              />
+            </div>
+            {close_bttn}
+            {bttn}
+            <h1 style={{ marginLeft: "10rem" }}>{this.props.topic}</h1>
+            <p className="textblock">{this.props.data}</p>
+            <div
+              style={{
+                float: "inline-end",
+                position: "relative",
+                bottom: "8px",
+              }}
+            >
+              <div onClick={this.handleLike} style={{ float: "left" }}>
+                &#9757;
+              </div>
+              <div style={{ float: "left", color: "green" }}>
+                {this.state.likes}
+              </div>
+              <div style={{ float: "left" }} onClick={this.handleDis}>
+                &#9759;
+              </div>
+              <div style={{ float: "left", color: "red" }}>
+                {this.state.dislikes}
+              </div>
+            </div>
+          </div>
+        );
+      } else {
+        return (
+          <div className="posts" onClick={this.handleClick.bind(this)}>
+            <div className="post_photo">
+              <img
+                src={"http://localhost:9000/" + this.props.img}
+                alt=""
+                style={{ height: "95px", float: "left", width: "125px" }}
+              />
+            </div>
+            {close_bttn}
+            {bttn}
+            <h1 style={{ marginLeft: "10rem" }}>{this.props.topic}</h1>
+            <p className="textblock">{this.props.data}</p>
+            <div
+              style={{
+                float: "inline-end",
+                position: "relative",
+                bottom: "8px",
+              }}
+            >
+              <div onClick={this.handleLike} style={{ float: "left" }}>
+                &#9757;
+              </div>
+              <div style={{ float: "left", color: "green" }}>
+                {this.state.likes}
+              </div>
+              <div style={{ float: "left" }} onClick={this.handleDis}>
+                &#9759;
+              </div>
+              <div style={{ float: "left", color: "red" }}>
+                {this.state.dislikes}
+              </div>
+            </div>
+          </div>
+        );
+      }
     } else {
-      return (
-        <div className="posts" onClick={this.handleClick.bind(this)}>
-          <div className="post_photo">
-            <img
-              src={"http://localhost:9000/" + this.props.img}
-              alt=""
-              style={{ height: "95px", float: "left", width: "125px" }}
-            />
-          </div>
-          {bttn}
-          <h1 style={{ marginLeft: "10rem" }}>{this.props.topic}</h1>
-          <p className="textblock">{this.props.data}</p>
-          <div
-            style={{ float: "inline-end", position: "relative", bottom: "8px" }}
-          >
-            <div onClick={this.handleLike} style={{ float: "left" }}>
-              &#9757;
-            </div>
-            <div style={{ float: "left", color: "green" }}>
-              {this.state.likes}
-            </div>
-            <div style={{ float: "left" }} onClick={this.handleDis}>
-              &#9759;
-            </div>
-            <div style={{ float: "left", color: "red" }}>
-              {this.state.dislikes}
-            </div>
-          </div>
-          
-        </div>
-      );
+      return null;
     }
   }
 }

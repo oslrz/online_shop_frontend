@@ -40,6 +40,7 @@ class Post extends React.Component {
                 favorite={obj[i].favorite}
                 photo={obj[i].photos}
                 UpdatePoint={x.UpdatePoint}
+                changing={x.props.changing}
               />
             );
           } else {
@@ -52,6 +53,7 @@ class Post extends React.Component {
                 photo={obj[i].photos}
                 img={obj[i].img}
                 UpdatePoint={x.UpdatePoint}
+                changing={x.props.changing}
               />
             );
           }
@@ -68,6 +70,7 @@ class Post extends React.Component {
                 favorite={obj[i].favorite}
                 photo={obj[i].photos}
                 UpdatePoint={x.UpdatePoint}
+                changing={x.props.changing}
               />
             );
           } else {
@@ -81,6 +84,7 @@ class Post extends React.Component {
                 photo={obj[i].photos}
                 img={obj[i].img}
                 UpdatePoint={x.UpdatePoint}
+                changing={x.props.changing}
               />
             );
           }
@@ -114,6 +118,7 @@ class Post extends React.Component {
                 favorite={obj[i].favorite}
                 photo={obj[i].photos}
                 UpdatePoint={x.UpdatePoint}
+                changing={x.props.changing}
               />
             );
           } else {
@@ -126,6 +131,7 @@ class Post extends React.Component {
                 photo={obj[i].photos}
                 img={obj[i].img}
                 UpdatePoint={x.UpdatePoint}
+                changing={x.props.changing}
               />
             );
           }
@@ -142,6 +148,7 @@ class Post extends React.Component {
                 favorite={obj[i].favorite}
                 photo={obj[i].photos}
                 UpdatePoint={x.UpdatePoint}
+                changing={x.props.changing}
               />
             );
           } else {
@@ -155,6 +162,7 @@ class Post extends React.Component {
                 photo={obj[i].photos}
                 img={obj[i].img}
                 UpdatePoint={x.UpdatePoint}
+                changing={x.props.changing}
               />
             );
           }
@@ -187,6 +195,7 @@ class Post extends React.Component {
               favorite={obj[i].favorite}
               photo={obj[i].photo}
               UpdatePoint={x.UpdatePoint}
+              changing={x.props.changing}
             />
           );
         } else {
@@ -201,6 +210,7 @@ class Post extends React.Component {
               favorite={obj[i].favorite}
               photo={obj[i].photo}
               UpdatePoint={x.UpdatePoint}
+              changing={x.props.changing}
             />
           );
         }

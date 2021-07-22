@@ -40,14 +40,14 @@ class HiddenDiv extends React.Component {
       return (
         <div id="hidden_div">
           <h1 style={{float:'inline-start'}}>Додати тему</h1>
-          <i class="icofont-close" style={{position:'relative',marginLeft:'2rem'}} onClick={this.props.closeDiv}></i>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">
+          <i className="icofont-close" style={{position:'relative',marginLeft:'2rem'}} onClick={this.props.closeDiv}></i>
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="inputGroup-sizing-default">
               тема
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               onInput={this.handleChange}
@@ -55,7 +55,7 @@ class HiddenDiv extends React.Component {
           </div>
           <button
             type="button"
-            class="btn btn-primary"
+            className="btn btn-primary"
             onClick={this.handleSend}
           >
             Додати

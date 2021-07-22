@@ -24,7 +24,9 @@ class Response extends React.Component {
       let request = new XMLHttpRequest();
       request.open("POST", "http://localhost:9000/comments/reply", true);
       request.setRequestHeader("Content-Type", "application/json");
-      request.addEventListener("load", function () {});
+      request.addEventListener("load", function () {
+        document.location.reload()
+      });
       request.send(data);
     }
   }
@@ -42,7 +44,7 @@ class Response extends React.Component {
             onClick={this.makeReply.bind(this)}
             style={{ float: "inline-end", marginTop:"0.2rem" }}
             type="button"
-            class="btn btn-primary"
+            className="btn btn-primary"
           >
             Відповісти
           </button>

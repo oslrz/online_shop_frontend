@@ -54,7 +54,7 @@ class Favourite_item extends React.Component {
           </h1>
           <button
             type="button"
-            class="btn-close"
+            className="btn-close"
             aria-label="Close"
             style={{ float: "inline-end" }}
             onClick={(e) => {

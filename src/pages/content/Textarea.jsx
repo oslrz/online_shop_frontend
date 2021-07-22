@@ -104,9 +104,9 @@ class Textarea extends React.Component {
               </option>
             </select>
 
-            <div class="mb-3" style={{marginTop:'1rem'}}>
+            <div className="mb-3" style={{marginTop:'1rem'}}>
               <input
-                class="form-control form-control-sm"
+                className="form-control form-control-sm"
                 onChange={this.onChangeHandler}
                 name="photo"
                 id="formFileSm"

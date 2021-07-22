@@ -61,7 +61,7 @@ class Make_Coment extends React.Component {
     }
     return (
       <div>
-        <button type="button" class="btn btn-primary" onClick={this.makeCom} style={{marginTop:'1rem',marginLeft:"2rem"}}>
+        <button type="button" className="btn btn-primary" onClick={this.makeCom} style={{marginTop:'1rem',marginLeft:"2rem"}}>
           {text}
         </button>
         <form onSubmit={this.onsubmit} action="http://localhost:9000/comments/make_comment" method="POST" encType="multipart/form-data" id="make_com_div" style={{ display: "none",marginLeft: "2rem"}}>

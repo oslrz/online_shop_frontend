@@ -148,7 +148,7 @@ class Comment_item extends React.Component {
             <button
               style={{ position: "absolute", left: "86rem" }}
               type="button"
-              class="btn btn-warning"
+              className="btn btn-warning"
               onClick={this.makeReply.bind(this)}
             >
               reply
@@ -188,7 +188,7 @@ class Comment_item extends React.Component {
             <button
               type="button"
               style={{ position: "absolute", left: "86rem" }}
-              class="btn btn-warning"
+              className="btn btn-warning"
               onClick={this.makeReply.bind(this)}
             >
               reply

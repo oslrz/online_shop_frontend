@@ -133,7 +133,7 @@ class Register extends React.Component {
             <button
               style={{ float: "left", marginRight: "1rem" }}
               type="button"
-              class="btn btn-primary btn-sm"
+              className="btn btn-primary btn-sm"
               onClick={this.handleBttn.bind(this)}
             >
               Sign up
@@ -158,7 +158,7 @@ class Register extends React.Component {
           </div>
           <button
             type="button"
-            class="btn btn-primary btn-sm"
+            className="btn btn-primary btn-sm"
             onClick={this.handleApply}
             style={{ float: "left", marginRight: "1rem" }}
           >
@@ -168,7 +168,7 @@ class Register extends React.Component {
 
         <button
           type="button"
-          class="btn btn-primary btn-sm"
+          className="btn btn-primary btn-sm"
           onClick={this.props.closeReg}
         >
           Back

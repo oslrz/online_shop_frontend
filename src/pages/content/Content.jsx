@@ -18,7 +18,12 @@ class Content extends React.Component {
       data: null,
       majak: false,
       sort: "all",
+      changing: false,
     };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState({ changing: !this.state.changing });
   }
   ClickHandl = () => {
     this.setState({ status: !this.state.status });
@@ -33,22 +38,52 @@ class Content extends React.Component {
   };
   render() {
     let link = window.location.href;
-    link = link.split('/');
+    link = link.split("/");
+    let bttn = null;
+    if (cookies.get("admin")) {
+      if (this.state.changing) {
+        bttn = (
+          <button
+            style={{ margin: "2px" }}
+            type="button"
+            className="btn btn-outline-primary"
+            onClick={this.handleClick}
+          >
+            make changes
+          </button>
+        );
+      } else {
+        bttn = (
+          <button
+            style={{ margin: "2px" }}
+            type="button"
+            className="btn btn-primary"
+            onClick={this.handleClick}
+          >
+            make changes
+          </button>
+        );
+      }
+    }
     if (link[3] !== "") {
       return <Story newsid={link[3]} />;
     } else {
       return (
-        <div id="content"  class="shadow-sm p-3 mb-5 bg-body rounded">
+        <div id="content" className="shadow-sm p-3 mb-5 bg-body rounded">
+          {bttn}
           <MakePost status={this.state.status} ClickHandl={this.ClickHandl} />
           <Sorting sort={this.Sort} />
           <Textarea status={this.state.status} Majak={this.Majak} />
           <ContextElemConsumer>
-            {value =>(
-              <Post data={value.data} props={this.state.majak} sort={this.state.sort} />
+            {(value) => (
+              <Post
+                data={value.data}
+                props={this.state.majak}
+                sort={this.state.sort}
+                changing={this.state.changing}
+              />
             )}
-            
           </ContextElemConsumer>
-          
         </div>
       );
     }

@@ -34,7 +34,7 @@ class Sorting extends React.Component {
 
   render() {
     return (
-    <select class="form-select" aria-label="Default select example" style={{float:'inline-end',width:'max-content'}} onChange={this.handleChange}>
+    <select className="form-select" aria-label="Default select example" style={{float:'inline-end',width:'max-content'}} onChange={this.handleChange}>
         <option value="All" selected>All</option>
         {this.state.data}
       </select>
