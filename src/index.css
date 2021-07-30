@@ -1,143 +1,364 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Chrome */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+
+  #content {
+    width: 70%;
+    float: left;
+    margin-top: 2rem;
+    margin-left: 2rem;
+  }
+
+  #story_page {
+    width: 100%;
+    float: inline-start;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
+
+  .posts {
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 95%;
+    left: 2.5%;
+    position: relative;
+    background-color: aliceblue;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    min-height: 13rem;
+    max-height: 12rem;
+    overflow: hidden;
+  }
+
+  #panel {
+    width: 20%;
+    float: right;
+    margin-right: 2rem;
+    margin-top: 2rem;
+  }
+
+  #textarea {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .comments {
+    margin-left: 2rem;
+    margin-top: 4px;
+    min-height: 9rem;
+    max-height: max-content;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
+
+  .photocard {
+    align-content: center;
+    display: flex;
+  }
+
+  .photo {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 21rem;
+  }
+
+  .story_page_photo {
+    max-width: 35rem;
+    /* width: 35rem; */
+    margin: 1rem;
+  }
+
+  .favourite_item {
+    cursor: pointer;
+    float: left;
+    width: 100%;
+    margin: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  }
+
+  .favourite_image {
+    height: 85px;
+  }
+
+  #hidden_div {
+    background-color: aquamarine;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    z-index: 10;
+  }
+
+  .post_photo {
+    width: 132px;
+    min-height: 13rem;
+    position: absolute;
+    border-right-color: rgb(183, 235, 235);
+    border-right-style: solid;
+    border-right-width: 7px;
+  }
+
+  #header_post {
+    border-bottom-color: rgb(143, 224, 224);
+    border-bottom-style: solid;
+    border-bottom-width: 7px;
+  }
+  .textblock {
+    position: relative;
+    width: 87%;
+    margin-left: 10rem;
+    height: 7rem;
+    overflow: hidden;
+  }
+
+  .makecomdiv {
+    position: relative;
+    min-height: 9rem;
+    max-height: max-content;
+    width: 75rem;
+    left: 11rem;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  #profile_nav {
+    border: 10px solid black;
+    resize: both;
+    background: linear-gradient(
+      to top,
+      rgba(#cffffe, 0.3),
+      rgba(#f9f7d9, 0.3),
+      rgba(#fce2ce, 0.3),
+      rgba(#ffc1f3, 0.3)
+    );
+    border-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3ClinearGradient id='g' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23cffffe' /%3E%3Cstop offset='25%25' stop-color='%23f9f7d9' /%3E%3Cstop offset='50%25' stop-color='%23fce2ce' /%3E%3Cstop offset='100%25' stop-color='%23ffc1f3' /%3E%3C/linearGradient%3E %3Cpath d='M1.5 1.5 l97 0l0 97l-97 0 l0 -97' stroke-linecap='square' stroke='url(%23g)' stroke-width='3'/%3E %3C/svg%3E")
+      1;
+  }
+
+  #vuizd {
+    position: absolute;
+    width: 16rem;
+    left: 77%;
+    top: 85%;
+    height: max-content;
+    background: cadetblue;
+    z-index: 4;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .com_text {
+    float: left;
+  }
+
+  .com_likes {
+    height: max-content;
+    width: max-content;
+    position: relative;
+    left: 85rem;
+  }
+  
+  .post_likes {
+    float: inline-end;
+    position: relative;
+    bottom: 8px;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
+/* Mozilla */
+@supports (-moz-appearance: none) {
 
-#content {
-  width: 70%;
-  float: inline-start;
-  margin-top: 2rem;
-  margin-left: 2rem;
-}
+  .post_likes {
+    float: inline-end;
+    position: relative;
+    bottom: 8px;
+  }
 
-#story_page {
-  width: 100%;
-  float: inline-start;
-  margin-top: 2rem;
-  margin-left: 2rem;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-}
+  .com_likes {
+    height: max-content;
+    width: max-content;
+    float: inline-end;
+    position: relative;
+    top: 2rem;
+  }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-.posts {
-  cursor: pointer;
-  margin-top: 1rem;
-  width: 95%;
-  left: 2.5%;
-  position: relative;
-  background-color: aliceblue;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-  min-height: 13rem;
-  max-height: 12rem;
-  overflow: hidden;
-}
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
 
-#panel {
-  width: 20%;
-  float: inline-end;
-  margin-right: 2rem;
-  margin-top: 2rem;
-}
+  #content {
+    width: 70%;
+    float: inline-start;
+    margin-top: 2rem;
+    margin-left: 2rem;
+  }
 
-#textarea {
-  width: 100%;
-  overflow: hidden;
-}
+  #story_page {
+    width: 100%;
+    float: inline-start;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
 
-.comments {
-  margin-left: 2rem;
-  margin-top: 4px;
-  min-height: 9rem;
-  max-height: max-content;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-}
+  .posts {
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 95%;
+    left: 2.5%;
+    position: relative;
+    background-color: aliceblue;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    min-height: 13rem;
+    max-height: 12rem;
+    overflow: hidden;
+  }
 
-.photocard {
-  align-content: center;
-  display: flex;
-}
+  #panel {
+    width: 20%;
+    float: inline-end;
+    margin-right: 2rem;
+    margin-top: 2rem;
+  }
 
-.photo {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 21rem;
-}
+  #textarea {
+    width: 100%;
+    overflow: hidden;
+  }
 
-.story_page_photo {
-  max-width: 35rem;
-  /* width: 35rem; */
-  margin: 1rem;
-}
+  .comments {
+    margin-left: 2rem;
+    margin-top: 4px;
+    min-height: 9rem;
+    max-height: max-content;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  }
 
-.favourite_item {
-  cursor: pointer;
-  float: left;
-  width: 100%;
-  margin: 5px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-}
+  .photocard {
+    align-content: center;
+    display: flex;
+  }
 
-.favourite_image {
-  height: 85px;
-}
+  .photo {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 21rem;
+  }
 
-#hidden_div {
-  background-color: aquamarine;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -50px;
-  z-index: 10;
-}
+  .story_page_photo {
+    max-width: 35rem;
+    /* width: 35rem; */
+    margin: 1rem;
+  }
 
-.post_photo {
-  width: 132px;
-  min-height: 13rem;
-  position: absolute;
-  border-right-color: rgb(183, 235, 235);
-  border-right-style: solid;
-  border-right-width: 7px;
-}
+  .favourite_item {
+    cursor: pointer;
+    float: left;
+    width: 100%;
+    margin: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+      rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  }
 
-#header_post {
-  border-bottom-color: rgb(143, 224, 224);
-  border-bottom-style: solid;
-  border-bottom-width: 7px;
-}
-.textblock {
-  position: relative;
-  width: 87%;
-  margin-left: 10rem;
-  height: 7rem;
-  overflow: hidden;
-}
+  .favourite_image {
+    height: 85px;
+  }
 
-.makecomdiv {
-  position: relative;
-  min-height: 9rem;
-  max-height: max-content;
-  width: 75rem;
-  left: 11rem;
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
-}
+  #hidden_div {
+    background-color: aquamarine;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    z-index: 10;
+  }
 
-#profile_nav {
-  border: 10px solid black;
-  resize: both;
-  background: linear-gradient(to top, rgba(#cffffe, 0.3), rgba(#f9f7d9, 0.3), rgba(#fce2ce, 0.3), rgba(#ffc1f3, 0.3));
-  border-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3ClinearGradient id='g' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23cffffe' /%3E%3Cstop offset='25%25' stop-color='%23f9f7d9' /%3E%3Cstop offset='50%25' stop-color='%23fce2ce' /%3E%3Cstop offset='100%25' stop-color='%23ffc1f3' /%3E%3C/linearGradient%3E %3Cpath d='M1.5 1.5 l97 0l0 97l-97 0 l0 -97' stroke-linecap='square' stroke='url(%23g)' stroke-width='3'/%3E %3C/svg%3E") 1;
+  .post_photo {
+    width: 132px;
+    min-height: 13rem;
+    position: absolute;
+    border-right-color: rgb(183, 235, 235);
+    border-right-style: solid;
+    border-right-width: 7px;
+  }
+
+  #header_post {
+    border-bottom-color: rgb(143, 224, 224);
+    border-bottom-style: solid;
+    border-bottom-width: 7px;
+  }
+  .textblock {
+    position: relative;
+    width: 87%;
+    margin-left: 10rem;
+    height: 7rem;
+    overflow: hidden;
+  }
+
+  .makecomdiv {
+    position: relative;
+    min-height: 9rem;
+    max-height: max-content;
+    width: 75rem;
+    left: 11rem;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  #profile_nav {
+    border: 10px solid black;
+    resize: both;
+    background: linear-gradient(
+      to top,
+      rgba(#cffffe, 0.3),
+      rgba(#f9f7d9, 0.3),
+      rgba(#fce2ce, 0.3),
+      rgba(#ffc1f3, 0.3)
+    );
+    border-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3ClinearGradient id='g' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23cffffe' /%3E%3Cstop offset='25%25' stop-color='%23f9f7d9' /%3E%3Cstop offset='50%25' stop-color='%23fce2ce' /%3E%3Cstop offset='100%25' stop-color='%23ffc1f3' /%3E%3C/linearGradient%3E %3Cpath d='M1.5 1.5 l97 0l0 97l-97 0 l0 -97' stroke-linecap='square' stroke='url(%23g)' stroke-width='3'/%3E %3C/svg%3E")
+      1;
+  }
+
+  #vuizd {
+    position: absolute;
+    width: 16rem;
+    left: 77%;
+    top: 85%;
+    height: max-content;
+    background: cadetblue;
+    z-index: 4;
+    border-radius: 20px;
+    overflow: hidden;
+  }
 }

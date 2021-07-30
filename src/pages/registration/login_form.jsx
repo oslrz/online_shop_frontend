@@ -79,7 +79,10 @@ class Login_form extends React.Component {
     this.setState({ nickname: null });
     this.setState({ login: "" });
     this.setState({ password: "" });
+    console.log('valera')
+    
     window.location.reload();
+    window.location.replace('/')
   }
   closeReg = () => {
     this.setState({ register: !this.state.register });

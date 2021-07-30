@@ -209,6 +209,7 @@ class Item extends React.Component {
             <h1 style={{ marginLeft: "10rem" }}>{this.props.topic}</h1>
             <p className="textblock">{this.props.data}</p>
             <div
+            className='post_likes'
               style={{
                 float: "inline-end",
                 position: "relative",
@@ -251,7 +252,7 @@ class Item extends React.Component {
                 bottom: "8px",
               }}
             >
-              <div onClick={this.handleLike} style={{ float: "left" }}>
+              <div onClick={this.handleLike} style={{ float: "left" }} className='post_likes'>
                 &#9757;
               </div>
               <div style={{ float: "left", color: "green" }}>

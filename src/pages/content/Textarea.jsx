@@ -22,6 +22,7 @@ class Textarea extends React.Component {
     this.handleTopic = this.handleTopic.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.addNewTheme = this.addNewTheme.bind(this);
+    this.onsubmit = this.onsubmit.bind(this)
   }
   closeDiv = () => {
     this.setState({ status: !this.state.status });
@@ -60,20 +61,39 @@ class Textarea extends React.Component {
     let txt = document.getElementById("textarea");
     txt.style.height = txt.scrollHeight + "px";
   }
+
   handleChange(event) {
     this.setState({ data: event.target.value });
   }
+
   handleTopic(event) {
     this.setState({ topic: event.target.value });
+  }
+
+  onsubmit(event){
+    event.preventDefault();
+    var url = "http://localhost:9000/posts/make";
+    var request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.onload = function() { 
+      console.log(request.responseText);
+      
+    };
+  window.location.reload();
+    request.onerror = function() {
+      // request failed
+    };
+  
+    request.send(new FormData(event.target)); // create FormData from form that triggered event
+    
   }
 
   render() {
     if (this.props.status) {
       return (
         <form
-          action="http://localhost:9000/posts/make"
-          method="POST"
-          encType="multipart/form-data"
+          action="/"
+          onSubmit={this.onsubmit}
         >
           <div id="div_textarea" style={{marginBottom:'4rem'}}>
             <div className="input-group mb-3">
@@ -131,7 +151,6 @@ class Textarea extends React.Component {
               type="submit"
               className="btn btn-success"
               style={{ float: "inline-end" }}
-              onClick={this.handleClick}
             >
               Send
             </button>

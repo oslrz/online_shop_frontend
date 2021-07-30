@@ -98,6 +98,7 @@ class Comment_item extends React.Component {
   }
 
   render() {
+    let author = this.props.data.author;
     let profile_pics = <div style={{ width: "15%" }}></div>;
     if (this.state.profile_pics || this.state.profile_pics !== null) {
       profile_pics = (
@@ -141,85 +142,164 @@ class Comment_item extends React.Component {
       replie = <p>replied:{this.props.replies}</p>;
     }
     if (this.state.img === undefined) {
-      return (
-        <div>
-          <div className="comments" id={this.props.data.id}>
-            {replie}
-            <button
-              style={{ position: "absolute", left: "86rem" }}
-              type="button"
-              className="btn btn-warning"
-              onClick={this.makeReply.bind(this)}
-            >
-              reply
-            </button>
-            {profile_pics}
-            <p>{this.state.text}</p>
+      if(replie === null){
+        return (
+          <div>
+            <div className="comments" id={this.props.data.id}>
 
-            <div
-              style={{ float: "inline-end", position: "relative", top: "2rem" }}
-            >
-              <div onClick={this.handleLike} style={{ float: "left" }}>
-                &#9757;
-              </div>
-              <div style={{ float: "left", color: "green" }}>
-                {this.state.likes}
-              </div>
-              <div style={{ float: "left" }} onClick={this.handleDis}>
-                &#9759;
-              </div>
-              <div style={{ float: "left", color: "red" }}>
-                {this.state.dislikes}
+              <button
+                style={{ position: "absolute", left: "86rem" }}
+                type="button"
+                className="btn btn-warning"
+                onClick={this.makeReply.bind(this)}
+              >
+                reply
+              </button>
+              {profile_pics}
+              <p className="com_text">{this.state.text}</p>
+  
+              <div className="com_likes">
+                <div onClick={this.handleLike} style={{ float: "left" }}>
+                  &#9757;
+                </div>
+                <div style={{ float: "left", color: "green" }}>
+                  {this.state.likes}
+                </div>
+                <div style={{ float: "left" }} onClick={this.handleDis}>
+                  &#9759;
+                </div>
+                <div style={{ float: "left", color: "red" }}>
+                  {this.state.dislikes}
+                </div>
               </div>
             </div>
+            <Response
+              author={author}
+              vision={this.state.vision}
+              code={this.props.data.id}
+              id={this.props.id}
+            />
           </div>
-          <Response
-            vision={this.state.vision}
-            code={this.props.data.id}
-            id={this.props.id}
-          />
-        </div>
-      );
-    } else {
-      return (
+        );
+      }else{
         <div>
-          <div className="comments" id={this.props.data.id}>
-            {replie}
-            <button
-              type="button"
-              style={{ position: "absolute", left: "86rem" }}
-              className="btn btn-warning"
-              onClick={this.makeReply.bind(this)}
-            >
-              reply
-            </button>
-            {profile_pics}
-            {this.state.img}
-            <p>{this.state.text}</p>
-            <div
-              style={{ float: "inline-end", position: "relative", top: "2rem" }}
-            >
-              <div onClick={this.handleLike} style={{ float: "left" }}>
-                &#9757;
-              </div>
-              <div style={{ float: "left", color: "green" }}>
-                {this.state.likes}
-              </div>
-              <div style={{ float: "left" }} onClick={this.handleDis}>
-                &#9759;
-              </div>
-              <div style={{ float: "left", color: "red" }}>
-                {this.state.dislikes}
+            <div className="comments" id={this.props.data.id}>
+              {replie}
+              <button
+                style={{ position: "absolute", left: "86rem" }}
+                type="button"
+                className="btn btn-warning"
+                onClick={this.makeReply.bind(this)}
+              >
+                reply
+              </button>
+              {profile_pics}
+              <p className="com_text">{this.state.text}</p>
+  
+              <div className="com_likes">
+                <div onClick={this.handleLike} style={{ float: "left" }}>
+                  &#9757;
+                </div>
+                <div style={{ float: "left", color: "green" }}>
+                  {this.state.likes}
+                </div>
+                <div style={{ float: "left" }} onClick={this.handleDis}>
+                  &#9759;
+                </div>
+                <div style={{ float: "left", color: "red" }}>
+                  {this.state.dislikes}
+                </div>
               </div>
             </div>
+            <Response
+              author={author}
+              vision={this.state.vision}
+              code={this.props.data.id}
+              id={this.props.id}
+            />
           </div>
-          <Response
-            vision={this.state.vision}
-            code={this.props.data.id}
-            id={this.props.id}
-          />
-        </div>
-      );
+      }
+      
+    } else {
+      if(replie === null){
+        return (
+          <div>
+            <div className="comments" id={this.props.data.id}>
+              <button
+                type="button"
+                style={{ position: "absolute", left: "86rem" }}
+                className="btn btn-warning"
+                onClick={this.makeReply.bind(this)}
+              >
+                reply
+              </button>
+              {profile_pics}
+              {this.state.img}
+              <p className="com_text">{this.state.text}</p>
+              <div className="com_likes">
+                <div onClick={this.handleLike} style={{ float: "left" }}>
+                  &#9757;
+                </div>
+                <div style={{ float: "left", color: "green" }}>
+                  {this.state.likes}
+                </div>
+                <div style={{ float: "left" }} onClick={this.handleDis}>
+                  &#9759;
+                </div>
+                <div style={{ float: "left", color: "red" }}>
+                  {this.state.dislikes}
+                </div>
+              </div>
+            </div>
+            <Response
+              author={author}
+              vision={this.state.vision}
+              code={this.props.data.id}
+              id={this.props.id}
+            />
+          </div>
+        );
+      }else{
+        return (
+          <div>
+            <div className="comments" id={this.props.data.id}>
+              {replie}
+              <button
+                type="button"
+                style={{ position: "absolute", left: "86rem" }}
+                className="btn btn-warning"
+                onClick={this.makeReply.bind(this)}
+              >
+                reply
+              </button>
+              {profile_pics}
+              {this.state.img}
+              <p className="com_text">{this.state.text}</p>
+              <div className="com_likes" style={{top:"-2rem"}}>
+                <div onClick={this.handleLike} style={{ float: "left" }}>
+                  &#9757;
+                </div>
+                <div style={{ float: "left", color: "green" }}>
+                  {this.state.likes}
+                </div>
+                <div style={{ float: "left" }} onClick={this.handleDis}>
+                  &#9759;
+                </div>
+                <div style={{ float: "left", color: "red" }}>
+                  {this.state.dislikes}
+                </div>
+              </div>
+            </div>
+            <Response
+              author={author}
+              vision={this.state.vision}
+              code={this.props.data.id}
+              id={this.props.id}
+            />
+          </div>
+        );
+      }
+      
     }
   }
 }

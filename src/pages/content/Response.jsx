@@ -28,6 +28,21 @@ class Response extends React.Component {
         document.location.reload()
       });
       request.send(data);
+
+
+      let notif_data = JSON.stringify({
+        author:this.props.author, //автор поста
+        replyer:cookies.get('nickname'),  //автор відповіді
+        post_code:this.props.id,  // код поста
+        text: this.state.text  //текст відповіді
+      })
+      let request1 = new XMLHttpRequest();
+      request1.open("POST", "http://localhost:9000/notif/make", true);
+      request1.setRequestHeader("Content-Type", "application/json");
+      request1.addEventListener("load", function () {
+        
+      });
+      request1.send(notif_data);
     }
   }
   render() {
